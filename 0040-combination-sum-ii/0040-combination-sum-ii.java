@@ -1,22 +1,23 @@
 class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-       List<List<Integer>> list = new LinkedList<List<Integer>>();
-       Arrays.sort(candidates);
-       backtrack(list, new ArrayList<Integer>(), candidates, target, 0);
-       return list;
+        List<Integer> tempList = new ArrayList<>(); 
+        Arrays.sort(candidates);
+        solve(candidates, target, 0, 0, tempList);
+        return ans;
     }
-
-    private void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] cand, int remain, int start) {
-
-       if(remain < 0) return; /** no solution */
-       else if(remain == 0) list.add(new ArrayList<>(tempList));
-       else{
-          for (int i = start; i < cand.length; i++) {
-             if(i > start && cand[i] == cand[i-1]) continue; /** skip duplicates */
-             tempList.add(cand[i]);
-             backtrack(list, tempList, cand, remain - cand[i], i+1);
-             tempList.remove(tempList.size() - 1);
-          }
-       }
+    
+    public void solve(int[] candidates,int target, int index, int sum,List<Integer> tempList){
+        if(sum > target) return;
+        if(sum == target) ans.add(new ArrayList(tempList));
+        int n = candidates.length;
+        for(int i=index; i<n ;i++){
+            if(i>index && candidates[i]==candidates[i-1]) continue;
+            tempList.add(candidates[i]);
+            sum+=candidates[i];
+            solve(candidates, target, i+1, sum, tempList);
+            sum-=candidates[i];
+            tempList.remove(tempList.size()-1);
+        }
     }
 }
