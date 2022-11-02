@@ -14,23 +14,22 @@ class Solution {
             }
             // System.out.println("");
         }
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                System.out.print(dp[i][j] + " ");
-                // dp[i][j] = grid[i][j] + Math.max(dp[i+1][j], dp[i][j+1]);
-            }
-            System.out.println("");
-        }
+        // for(int i=0; i<n; i++){
+        //     for(int j=0; j<m; j++){
+        //         System.out.print(dp[i][j] + " ");
+        //     }
+        //     System.out.println("");
+        // }
         return dp[0][0];
         // return solve(grid, 0, 0,  dp);
     }
     
     
-    public int solve(int[][] grid, int i, int j ,int[][] dp){
-        if(i==0 && j==0) return grid[i][j];
-        if(i<0 || j<0) return 0;
-        if(dp[i][j]!=-1) return dp[i][j];
-        // int down =  
-        return 1;
-    }
+    // public int solve(int[][] grid, int i, int j ,int[][] dp){
+    //     if(i==0 && j==0) return grid[i][j];
+    //     if(i<0 || j<0) return 0;
+    //     if(dp[i][j]!=-1) return dp[i][j];
+    //     // int down =  
+    //     return 1;
+    // }
 }
